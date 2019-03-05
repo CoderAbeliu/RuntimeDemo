@@ -19,12 +19,21 @@
     // Do any additional setup after loading the view, typically from a nib.
     //此处只是实现了类方法的调用，在进行实例方法的调用时，请注意target 的传参
     Class class = NSClassFromString(@"Test");
-    SEL sel = NSSelectorFromString(@"addNumber");
-    NSMethodSignature *methodSign = [class methodSignatureForSelector:sel];
+    SEL sel = NSSelectorFromString(@"testMethod");
+    NSObject *obj = [class new];
+    NSMethodSignature *methodSign = [obj methodSignatureForSelector:sel];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSign];
-    [invocation setTarget:class];
+    [invocation setTarget:obj];
     [invocation setSelector:sel];
     [invocation invoke];
+    
+    SEL addMethodSel = NSSelectorFromString(@"addNumber");
+    NSMethodSignature *signature = [class methodSignatureForSelector:addMethodSel];
+    NSInvocation *invocation2 = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation2 setTarget:class];
+    [invocation2 setSelector:addMethodSel];
+    [invocation2 invoke];
+    
 }
 
 

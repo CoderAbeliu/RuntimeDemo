@@ -10,6 +10,10 @@
 
 @implementation Test
 + (void)addNumber {
-    
+    NSLog(@"addNumber");
+}
+
+- (void)testMethod {
+    NSLog(@"testMethod");
 }
 @end
